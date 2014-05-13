@@ -1,0 +1,27 @@
+<div class="container">
+
+
+	<div class="panel panel-default">
+		<!-- Default panel contents -->
+		<div class="panel-heading">Invoice list</div>
+
+		<table class="table">
+			<tr>
+			   <th>Invoice number</th>
+			   <th>Date of issue</th>
+			   <th>Maturity date</th>
+			   <th>Total amount</th>
+			</tr>
+			<tr ng-repeat="invoice in invoices">
+				<td>{{invoice.number}}</td>
+				<td>{{invoice.dateOfIssue | date : 'yyyy-MM-dd'}}</td>
+				<td>{{invoice.maturity | date : 'yyyy-MM-dd'}}</td>
+				<td>{{invoice.totalAmount}}</td>
+				<td><button type="button" class="btn btn-default" ng-click="removeInvoice(invoice.id)">Remove</button></td>
+			</tr>
+		</table>
+	</div>
+
+
+
+</div>

@@ -20,4 +20,13 @@ public class InvoiceService {
 	public List<Invoice> getInvoices() {
 		return repository.findAll();
 	}
+
+	public Invoice addInvoice(Invoice invoice) {
+		return repository.save(invoice);
+	}
+
+	public void removeInvoice(Long id) {
+		repository.delete(id);
+		
+	}
 }

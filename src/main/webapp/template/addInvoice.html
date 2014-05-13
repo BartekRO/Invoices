@@ -1,0 +1,25 @@
+
+<div class="container">
+	
+	<form>
+		<fieldset>
+			<label for="invoiceNumber">Invoice number:</label>
+			<input id="invoiceNumber" type="text" class="form-control" placeholder="Invoice number" ng-model="invoice.number">
+			
+			<label for="dateOfIssue">Date of issue:</label>
+			<input id="dateOfIssue" type="text" class="form-control" placeholder="Date of issue (YYYY-MM-DD)" ng-model="invoice.dateOfIssue">
+			
+			<label for="maturity">Maturity date:</label>
+			<input id="maturity" type="text" class="form-control" placeholder="Maturity date (YYYY-MM-DD)" ng-model="invoice.maturity">
+			
+			<label for="totalAmount">Total amount:</label>
+			<input id="totalAmount" type="text" class="form-control" placeholder="Total amount (34.34)" ng-model="invoice.totalAmount">
+		</fieldset>
+		
+		<button type="submit" class="btn btn-primary" ng-click="addInvoice(invoice)">Save</button>
+		<button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+	</form>
+
+
+</div>
+
