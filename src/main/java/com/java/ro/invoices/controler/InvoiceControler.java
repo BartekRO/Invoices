@@ -3,6 +3,7 @@ package com.java.ro.invoices.controler;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ public class InvoiceControler {
 	@Autowired
 	private InvoiceService invoiceService;
 	
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@RequestMapping(value="/getInvoices", method= RequestMethod.GET)
 	public @ResponseBody List<Invoice> getInvoices() {
 		return invoiceService.getInvoices();
