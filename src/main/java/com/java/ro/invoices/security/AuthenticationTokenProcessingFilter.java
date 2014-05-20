@@ -13,9 +13,9 @@ import org.springframework.web.filter.GenericFilterBean;
 public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
 
 	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain filterChain) throws IOException, ServletException {
-
+			FilterChain chain) throws IOException, ServletException {
 		
+		chain.doFilter(request, response);
 	}
 
 }
