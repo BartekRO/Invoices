@@ -14,7 +14,7 @@ import com.java.ro.invoices.model.entity.Invoice;
 import com.java.ro.invoices.model.service.InvoiceService;
 
 @Controller
-public class InvoiceControler {
+public class InvoiceController {
 	
 	
 	@Autowired

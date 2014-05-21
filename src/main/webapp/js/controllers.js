@@ -27,3 +27,25 @@ invoices.controller('AddInvoiceController',  function AddInvoiceController($scop
 	};
 	$scope.cancel = function() {window.location = "#/invoiceList";};
 });
+
+invoices.controller('LoginController',  function AddInvoiceController($rootScope, $scope, $cookieStore, $location, securityService) {
+	
+	$scope.login = function(invioce) {
+		$scope.loginError = null;
+		securityService.authenticate($scope.username, $scope.password).then(
+				function(userWithToken) {
+					var authenticationToken = userWithToken.token;
+					$rootScope.authenticationToken = authenticationToken;
+					if ($scope.rememberMe) {
+						$cookieStore.put('authenticationToken', authenticationToken);
+					}
+					$rootScope.user = userWithToken.user;
+					$location.path("/Invoices");
+				},
+				function(errorData, statusCode) {
+						$scope.loginError = errorData.message;
+					}
+			);
+	};
+});
+
