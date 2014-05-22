@@ -11,10 +11,17 @@ invoices.controller('InvoiceListController',  function InvoiceListController($sc
 	$scope.removeInvoice = function(invioceId) {
 		invoicesService.removeInvoice(invioceId).then(
 				function(data) {$route.reload();},
-				function(statusCode) {console.log(statusCode);}
+				function(errorData, statusCode) {
+					console.log(statusCode);
+				}
 			);
 	};
+	
+	
 });
+
+
+
 
 
 invoices.controller('AddInvoiceController',  function AddInvoiceController($scope, invoicesService) {
@@ -36,9 +43,7 @@ invoices.controller('LoginController',  function AddInvoiceController($rootScope
 				function(userWithToken) {
 					var authenticationToken = userWithToken.token;
 					$rootScope.authenticationToken = authenticationToken;
-					if ($scope.rememberMe) {
-						$cookieStore.put('authenticationToken', authenticationToken);
-					}
+					$cookieStore.put('authenticationToken', authenticationToken);
 					$rootScope.user = userWithToken.user;
 					$location.path("/Invoices");
 				},
@@ -47,5 +52,6 @@ invoices.controller('LoginController',  function AddInvoiceController($rootScope
 					}
 			);
 	};
+	
 });
 

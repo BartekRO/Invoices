@@ -26,12 +26,14 @@ public class InvoiceController {
 		return invoiceService.getInvoices();
 	}
 	
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@RequestMapping(value="/addInvoice", method = RequestMethod.POST)
 	public @ResponseBody String addInvoice(@RequestBody Invoice invoice) {
 		invoiceService.addInvoice(invoice);
 		return "";
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value="/removeInvoice", method = RequestMethod.POST)
 	public @ResponseBody String removeInvoice(@RequestBody Long id) {
 		invoiceService.removeInvoice(id);

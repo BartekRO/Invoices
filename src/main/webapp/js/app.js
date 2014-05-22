@@ -21,6 +21,7 @@ var invoices = angular.module('invoices', [ 'ngRoute', 'ngCookies' ]).config(fun
 			        return {
 			        	'responseError': function(rejection) {
 			        		var status = rejection.status;
+			        		var data = rejection.data;
 			        		var config = rejection.config;
 			        		var method = config.method;
 			        		var url = config.url;
@@ -28,7 +29,8 @@ var invoices = angular.module('invoices', [ 'ngRoute', 'ngCookies' ]).config(fun
 			        		if (status == 401) {
 			        			$location.path( "/login" );
 			        		} else {
-			        			$rootScope.error = method + " on " + url + " failed with status " + status;
+			        			$rootScope.error = data.message;
+			        			console.log(method + " on " + url + " failed with status " + status + " and message " + data.message);
 			        		}
 			              
 			        		return $q.reject(rejection);
@@ -50,7 +52,7 @@ var invoices = angular.module('invoices', [ 'ngRoute', 'ngCookies' ]).config(fun
 			        };
 			    });
 		})
-		.run(function($rootScope, $location, $cookieStore) {
+		.run(function($rootScope, $location, $cookieStore, securityService) {
 			
 			/* Reset error when a new view is loaded */
 			$rootScope.$on('$viewContentLoaded', function() {
@@ -70,14 +72,30 @@ var invoices = angular.module('invoices', [ 'ngRoute', 'ngCookies' ]).config(fun
 				return $rootScope.user.roles[role];
 			};
 			
+			
 			$rootScope.logout = function() {
 				delete $rootScope.user;
 				delete $rootScope.authToken;
-				$cookieStore.remove('authToken');
+				$cookieStore.remove('authenticationToken');
 				$location.path( "/login" );
 			};
 			
-			 /* Try getting valid user from cookie or go to login page */
+			var originalPath = $location.path();
 			$location.path("/login");
+			var authenticationToken = $cookieStore.get('authenticationToken');
+			if (authenticationToken !== undefined) {
+				$rootScope.authenticationToken = authenticationToken;
+				
+				securityService.getUser().then(
+					function(user) {
+						$rootScope.user = user;
+						$location.path(originalPath);
+					},
+					function(statusCode) {
+							console.log(statusCode);
+					}
+				);
+			}
+			
 			$rootScope.initialized = true;
 		});

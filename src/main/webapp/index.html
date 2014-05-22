@@ -15,17 +15,26 @@
 </head>
 <body>
 	<div class="container">
-		<ul class="nav nav-tabs nav-justified">
-			<li><a href="#/invoiceList">Invoice list</a></li>
-			<li><a href="#/addInvoice">Add invoice</a></li>
-			<li ng-show="user"><a href="" ng-click="logout()">Logout</a></li>
-		</ul>
+		<div class="container">
+			
+			
+			<nav class="navbar nav-tabs">
+				<ul class="nav navbar-nav nav-tabs nav-justified" >
+					<li ng-show="hasRole('ROLE_USER')"><a href="#/invoiceList">Invoice list</a></li>
+					<li ng-show="hasRole('ROLE_USER')"><a href="#/addInvoice">Add invoice</a></li>
+					<li ng-show="user"><a href="" ng-click="logout()">Logout</a></li>
+				</ul>
+			</nav>
+			
+			<div class="alert alert-danger" ng-show="error">{{error}}</div>
+		</div>
 		
 		
 		<ng-view></ng-view>
 
-
-
+		<div class="container" ng-show="user">
+			  <p  style="text-align: center"><small>Logged in as {{user.username}}</small></p>
+		</div>
 	</div>
 
 
