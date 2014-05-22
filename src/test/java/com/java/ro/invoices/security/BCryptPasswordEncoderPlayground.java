@@ -6,9 +6,8 @@ public class BCryptPasswordEncoderPlayground {
 	
 	public static void main(String[] args) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String encode = encoder.encode("321");
+		String encode = encoder.encode("123");
 		System.out.println(encode);
 		
-		System.out.println(encoder.matches("321", encode));
 	}
 }

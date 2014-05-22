@@ -19,7 +19,7 @@ public class UserService implements UserDetailsService {
 	
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserDetails user = repository.findByUsername(username);
+		UserDetails user = repository.findUserByUsername(username);
 		if (user == null) {
 			throw new UsernameNotFoundException("The user with name " + username + " was not found");
 		}

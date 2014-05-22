@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -12,11 +13,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @SuppressWarnings("serial")
+@Cacheable(true)
 @Entity(name="TUser")
 public class User implements Serializable, UserDetails {
 
@@ -31,6 +35,7 @@ public class User implements Serializable, UserDetails {
 	private String password;
 	
 	@ElementCollection(fetch = FetchType.EAGER)
+	@Cache(region="User", usage=CacheConcurrencyStrategy.READ_ONLY)
 	private Set<String> roles = new HashSet<String>();
 	
 	
