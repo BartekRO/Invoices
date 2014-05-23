@@ -3,10 +3,10 @@
 
  invoices.factory('invoicesService', function($http, $q) {
 	return {
-		getInvoices : function() {
+		getInvoices : function(pageNumber, sizeCount) {
 			var deferred = $q.defer();
 			
-			$http({method : "GET", url : "rest/getInvoices"
+			$http({method : "GET", url : "rest/getInvoices", params : {page : pageNumber, count : sizeCount}
 				}).success(function (data, status, headers, config) {
 					deferred.resolve(data);
 				}).error(function (data, status, headers, config) {

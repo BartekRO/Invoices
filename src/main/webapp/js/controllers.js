@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-invoices.controller('InvoiceListController',  function InvoiceListController($scope, invoicesService, $route) {
+invoices.controller('InvoiceListController',  function InvoiceListController($scope, invoicesService, $route, ngTableParams) {
 	
 	$scope.tableParams = new ngTableParams({
         page: 1,            // show first page
@@ -14,8 +14,11 @@ invoices.controller('InvoiceListController',  function InvoiceListController($sc
         total: 0,           // length of data
         getData: function($defer, params) {
                    
-        	invoicesService.getInvoices().then(
-        			function(invoices) {params.total(invoices.length); $defer.resolve(invoices);},
+        	invoicesService.getInvoices(params.$params.page, params.$params.count).then(
+        			function(data) {
+        				params.total(data.total); 
+        				$defer.resolve(data.records);
+        			},
         			function(statusCode) {console.log(statusCode);}
         		);
         }
