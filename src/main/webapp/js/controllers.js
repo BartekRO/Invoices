@@ -3,10 +3,25 @@
 /* Controllers */
 
 invoices.controller('InvoiceListController',  function InvoiceListController($scope, invoicesService, $route) {
-	invoicesService.getInvoices().then(
-		function(invoices) {$scope.invoices = invoices;},
-		function(statusCode) {console.log(statusCode);}
-	);
+	
+	$scope.tableParams = new ngTableParams({
+        page: 1,            // show first page
+        count: 10,          // count per page
+        sorting: {
+            name: 'asc'     // initial sorting
+        }
+    }, {
+        total: 0,           // length of data
+        getData: function($defer, params) {
+                   
+        	invoicesService.getInvoices().then(
+        			function(invoices) {params.total(invoices.length); $defer.resolve(invoices);},
+        			function(statusCode) {console.log(statusCode);}
+        		);
+        }
+    }); 
+	
+	
 	
 	$scope.removeInvoice = function(invioceId) {
 		invoicesService.removeInvoice(invioceId).then(
