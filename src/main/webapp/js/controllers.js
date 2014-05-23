@@ -26,11 +26,17 @@ invoices.controller('InvoiceListController',  function InvoiceListController($sc
 
 invoices.controller('AddInvoiceController',  function AddInvoiceController($scope, invoicesService) {
 	
-	$scope.addInvoice = function(invioce) {
-		invoicesService.addInvoice(invioce).then(
-				function(data) {window.location = "#/invoiceList";},
-				function(statusCode) {console.log(statusCode);}
-			);
+	$scope.addInvoice = function(invoice,newInvoiceForm) {
+		
+		if (newInvoiceForm.$valid) {
+			
+			invoice.totalAmount = parseFloat(invoice.totalAmount.replace(",", "."), 10.00);
+			
+			invoicesService.addInvoice(invoice).then(
+					function(data) {window.location = "#/invoiceList";},
+					function(statusCode) {console.log(statusCode);}
+				);
+		}
 	};
 	$scope.cancel = function() {window.location = "#/invoiceList";};
 });
