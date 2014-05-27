@@ -74,3 +74,21 @@
 			}
 		};
  });
+ 
+ invoices.factory('contractorsService', function($http, $q) {
+	
+	 return {
+			getContractors : function(pageNumber, sizeCount) {
+				var deferred = $q.defer();
+				
+				$http({method : "GET", url : "rest/getContractors"
+					}).success(function (data, status, headers, config) {
+						deferred.resolve(data);
+					}).error(function (data, status, headers, config) {
+						deferred.reject(status);
+					});
+				
+				return deferred.promise;
+			}
+	 };
+ });

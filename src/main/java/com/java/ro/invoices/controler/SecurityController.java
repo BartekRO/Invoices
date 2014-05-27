@@ -3,6 +3,8 @@ package com.java.ro.invoices.controler;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.ws.rs.WebApplicationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -34,6 +36,11 @@ public class SecurityController {
 	@RequestMapping(value="/user", method= RequestMethod.GET)
 	public @ResponseBody UserTO getUser() {
 		Authentication authectication =	SecurityContextHolder.getContext().getAuthentication();
+		
+		if (authectication.getPrincipal() instanceof String) {
+			throw new WebApplicationException(401);
+		}
+		
 		UserDetails userDetails = (UserDetails) authectication.getPrincipal();
 		return new UserTO(userDetails.getUsername(), createRoleMap(userDetails));
 	}
@@ -44,7 +51,7 @@ public class SecurityController {
 		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userAuthentication.getUsername(), userAuthentication.getPassword());
 		authenticationManager.authenticate(authToken);
 		
-		// we need to load again user because user passwor after authentication is null
+		// we need to load again user because user password after authentication is null
 		
 		UserDetails userDetails = (UserDetails) userService.loadUserByUsername(userAuthentication.getUsername());
 		return new UserWithTokenTO(new UserTO(userDetails.getUsername(), createRoleMap(userDetails)), 
