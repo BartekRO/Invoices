@@ -2,7 +2,7 @@
 <div class="container">
 	
 	<style>input.ng-invalid.ng-dirty {background-color: pink}</style>
-	<form name="newInvoiceForm2">
+	<form name="newInvoiceForm">
 	
 		<fieldset>
 			<label for="invoiceNumber">Invoice number:</label>
@@ -14,14 +14,20 @@
 			<label for="maturity">Maturity date:</label>
 			<input id="maturity" type="text" class="form-control datePicker" required ng-pattern="/\d\d\d\d-\d\d-\d\d/" placeholder="Maturity date (YYYY-MM-DD)" ng-model="invoice.maturity">
 			
-			<label for="contractor">Contractor:</label>
-			<input id="contractor" type="text" class="form-control"  required  ng-model="invoice.contractor" 
-			typeahead="contractor as (contractor.name) for contractor in contractors | filter:$viewValue"
-			typeaheadEditable="false">
-			
+			<label for="contractor">Contractor:</label> 
+			<div class="input-group">
+			<input id="contractor" name="contractor" type="text" class="form-control" required
+				ng-model="invoice.contractor"
+				typeahead="contractor as (contractor.name) for contractor in contractors | filter:$viewValue"
+				typeaheadEditable="false">
+			 <span class="input-group-btn" lov model="contractors" title="lovTitle"callback="lovCallBack(e)" columnlist="lovColumnList"
+				fieldlist="lovFieldList" ng-show="contractors != null">
+			 </span>	
+			 </div>
+
 		</fieldset>
 		
-		<button type="submit" class="btn btn-primary" ng-disabled="newInvoiceForm2.$invalid" ng-click="addInvoice(invoice, newInvoiceForm2)">Save</button>
+		<button type="submit" class="btn btn-primary" ng-disabled="newInvoiceForm.$invalid" ng-click="addInvoice(invoice, newInvoiceForm)">Save</button>
 		<button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
 	</form>
 

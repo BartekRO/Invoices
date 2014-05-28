@@ -1,6 +1,6 @@
 'use strict';
 
-var invoices = angular.module('invoices', [ 'ngRoute', 'ngCookies', 'ngTable', 'ui.bootstrap' ]).config(function($routeProvider, $httpProvider) {
+var invoices = angular.module('invoices', [ 'ngRoute', 'ngCookies', 'ngTable', 'ui.bootstrap', 'lov-directive' ]).config(function($routeProvider, $httpProvider) {
 			$routeProvider.when('/invoiceList', {
 				templateUrl : 'template/invoiceList.html',
 				controller : 'InvoiceListController'

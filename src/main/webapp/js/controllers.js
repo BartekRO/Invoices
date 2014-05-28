@@ -44,6 +44,18 @@ invoices.controller('InvoiceListController',  function InvoiceListController($sc
 
 invoices.controller('AddInvoiceController',  function AddInvoiceController($scope, invoicesService, contractorsService) {
 	
+	 $scope.lovTitle = "Search for Employees";
+     $scope.lovColumnList = ["Name"];
+     $scope.lovFieldList = ["name"];
+	
+     $scope.lovCallBack = function (e) {
+
+		if (typeof $scope.invoice === 'undefined') {
+			$scope.invoice = {};
+		}
+        $scope.invoice.contractor = e;
+        $scope.newInvoiceForm.contractor.$setValidity('editable', true);
+     };
 	
 	contractorsService.getContractors().then(
 		function(contractors) {
