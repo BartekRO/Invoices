@@ -42,12 +42,39 @@ invoices.controller('InvoiceListController',  function InvoiceListController($sc
 
 
 
-invoices.controller('AddInvoiceController',  function AddInvoiceController($scope, invoicesService, contractorsService) {
+invoices.controller('AddInvoiceController',  function AddInvoiceController($scope, invoicesService, contractorsService, ngTableParams) {
 	
 	 $scope.lovTitle = "Search for Employees";
      $scope.lovColumnList = ["Name"];
      $scope.lovFieldList = ["name"];
+     
+     $scope.tableParams = new ngTableParams({
+         page: 1, 
+         count: 1000  
+     }, {
+         counts: [], // hide page counts control
+         total: 1,  // value less than count hide pagination
+         getData: function($defer, params) {
+        	 $defer.resolve($scope.invoice.positions);
+         }
+     }); 
+     
+     $scope.addInvoicePosition = function() {
+    	 $scope.invoice.positions.push({});
+     };
+     
+     $scope.deleteInvoicePosition = function(position) {
+ 		var index = $scope.invoice.positions.indexOf(position);
+ 		if (index > -1) {
+ 			$scope.invoice.positions.splice(index, 1);
+ 		}
+      };
 	
+     if (typeof $scope.invoice === 'undefined') {
+			$scope.invoice = {};
+			$scope.invoice.positions = [{}];
+	}
+     
      $scope.lovCallBack = function (e) {
 
 		if (typeof $scope.invoice === 'undefined') {

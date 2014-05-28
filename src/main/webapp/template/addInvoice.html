@@ -5,6 +5,7 @@
 	<form name="newInvoiceForm">
 	
 		<fieldset>
+		
 			<label for="invoiceNumber">Invoice number:</label>
 			<input id="invoiceNumber" type="text" class="form-control" required placeholder="Invoice number" ng-model="invoice.number">
 			
@@ -16,16 +17,46 @@
 			
 			<label for="contractor">Contractor:</label> 
 			<div class="input-group">
-			<input id="contractor" name="contractor" type="text" class="form-control" required
-				ng-model="invoice.contractor"
-				typeahead="contractor as (contractor.name) for contractor in contractors | filter:$viewValue"
-				typeaheadEditable="false">
-			 <span class="input-group-btn" lov model="contractors" title="lovTitle"callback="lovCallBack(e)" columnlist="lovColumnList"
-				fieldlist="lovFieldList" ng-show="contractors != null">
-			 </span>	
+				<input id="contractor" name="contractor" type="text" class="form-control" required
+					ng-model="invoice.contractor"
+					typeahead="contractor as (contractor.name) for contractor in contractors | filter:$viewValue"
+					typeaheadEditable="false">
+				 <span class="input-group-btn" lov model="contractors" title="lovTitle"callback="lovCallBack(e)" columnlist="lovColumnList"
+					fieldlist="lovFieldList" ng-show="contractors != null">
+				 </span>	
 			 </div>
-
 		</fieldset>
+		
+		
+		<table ng-table="tableParams" class="table">
+			
+	        <tr ng-repeat="invoicePosition in $data">
+	            <td data-title="'Description'">
+	                <input class="form-control" type="text" ng-model="invoicePosition.description" required/>
+	            </td>
+	            <td data-title="'Quantity'">
+	                <input class="form-control" type="text" ng-model="invoicePosition.quantity" required/>
+	            </td>
+	            <td data-title="'Unit price'">
+	                <input class="form-control" type="text" ng-model="invoicePosition.unitPrice" required/>
+	            </td>
+	            <td data-title="'Tax rate'">
+	                <input class="form-control" type="text" ng-model="invoicePosition.taxRate" required/>
+	            </td>
+	            <td data-title="'Total'">
+	                <input class="form-control" type="text" ng-model="invoicePosition.total" required/>
+	            </td>
+	            <td data-title="'Actions'">
+	            	<button type="button" class="btn btn-default" ng-click="addInvoicePosition()">Add</button>
+	            	<button type="button" class="btn btn-default" ng-click="deleteInvoicePosition(invoicePosition)">Delete</button>
+	            </td>
+	        </tr>
+	        <tr ng-show="invoice.positions.length == 0">
+	        	<td>
+	        		<button type="button" class="btn btn-default" ng-click="addInvoicePosition()" ng-show="invoice.positions.length == 0">Add</button>
+	        	</td>
+	        </tr>
+	    </table> 
 		
 		<button type="submit" class="btn btn-primary" ng-disabled="newInvoiceForm.$invalid" ng-click="addInvoice(invoice, newInvoiceForm)">Save</button>
 		<button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
