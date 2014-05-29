@@ -3474,7 +3474,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
       var isLoadingSetter = $parse(attrs.typeaheadLoading).assign || angular.noop;
 
       //a callback executed when a match is selected
-      var onSelectCallback = $parse(attrs.typeaheadOnSelect);
+      var onSelectCallback = $parse(attrs.typeaheadonselect);
 
       var inputFormatter = attrs.typeaheadInputFormatter ? $parse(attrs.typeaheadInputFormatter) : undefined;
 

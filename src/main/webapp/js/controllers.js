@@ -42,7 +42,7 @@ invoices.controller('InvoiceListController',  function InvoiceListController($sc
 
 
 
-invoices.controller('AddInvoiceController',  function AddInvoiceController($scope, invoicesService, contractorsService, ngTableParams) {
+invoices.controller('AddInvoiceController',  function AddInvoiceController($scope, $filter, invoicesService, contractorsService, taxRatesService, ngTableParams) {
 	
 	 $scope.lovTitle = "Search for Employees";
      $scope.lovColumnList = ["Name"];
@@ -63,12 +63,65 @@ invoices.controller('AddInvoiceController',  function AddInvoiceController($scop
     	 $scope.invoice.positions.push({});
      };
      
-     $scope.deleteInvoicePosition = function(position) {
+     $scope.deleteInvoicePosition = function(invoice, position) {
  		var index = $scope.invoice.positions.indexOf(position);
  		if (index > -1) {
  			$scope.invoice.positions.splice(index, 1);
  		}
+ 		$scope.invoiceChanged(invoice);
       };
+      
+      $scope.invoicePositionChanged = function(invoice, invoicePosition) {
+    	
+    	  var quantity = invoicePosition.quantity,
+    	  unitPrice = invoicePosition.unitPrice;
+    	  
+    	  if (typeof quantity !== 'undefined' &&  typeof unitPrice !== 'undefined') {
+    		  quantity = parseFloat(quantity.replace(",", "."), 10.00);
+        	  unitPrice = parseFloat(unitPrice.replace(",", "."), 10.00);
+    		  
+    		  invoicePosition.total = unitPrice * quantity, 2;
+    	  }
+    	  $scope.invoiceChanged(invoice);
+      };
+      
+      $scope.invoiceChanged = function(invoice) {
+    	  var taxMap = {};
+    	  var taxMapKeys = [];
+    	  var invoicePositionLength = invoice.positions.length;
+    	  for (var i = 0; i < invoicePositionLength; i++) {
+    		  var positionTaxRate = invoice.positions[i].taxRate;
+    		  var positionTotal = invoice.positions[i].total;
+    		  if (typeof positionTotal !== 'undefined' && typeof positionTaxRate !== 'undefined') {
+    			  
+    			  
+    			  var sumaryTaxRate = taxMap[positionTaxRate.rate];
+    			  if (typeof sumaryTaxRate === 'undefined') {
+    				  sumaryTaxRate = {taxRate : positionTaxRate, taxSubtotal : 0, tax : 0}; 
+    				  taxMap[positionTaxRate.rate] = sumaryTaxRate;
+    				  taxMapKeys.push(positionTaxRate);
+    			  }
+    			  sumaryTaxRate.taxSubtotal += positionTotal;
+    			  sumaryTaxRate.tax = sumaryTaxRate.taxSubtotal * sumaryTaxRate.taxRate.rate;
+    		  } 
+    	  }
+    	  
+    	  
+    	  var taxMapKeysLength = taxMapKeys.length;
+    	  invoice.taxTotals = [];
+    	  invoice.totalAmount = 0;
+    	  invoice.subTotalAmount = 0;
+    	  for (var i = 0; i < taxMapKeysLength; i++) {
+    		  var taxMapValue = taxMap[taxMapKeys[i].rate];
+    		  var invoiceTaxTotal = {taxRate : taxMapValue.taxRate, taxSubtotal : taxMapValue.taxSubtotal, tax : taxMapValue.tax};
+    		  
+    		  invoice.subTotalAmount +=  taxMapValue.taxSubtotal;
+    		  invoice.totalAmount += taxMapValue.taxSubtotal + taxMapValue.tax;
+    		  
+    		  invoice.taxTotals.push(invoiceTaxTotal);
+    	  } 
+      };
+      
 	
      if (typeof $scope.invoice === 'undefined') {
 			$scope.invoice = {};
@@ -76,7 +129,6 @@ invoices.controller('AddInvoiceController',  function AddInvoiceController($scop
 	}
      
      $scope.lovCallBack = function (e) {
-
 		if (typeof $scope.invoice === 'undefined') {
 			$scope.invoice = {};
 		}
@@ -90,6 +142,14 @@ invoices.controller('AddInvoiceController',  function AddInvoiceController($scop
 			},
 		function(statusCode) {console.log(statusCode);}
 	);
+	
+	taxRatesService.getTaxRates().then(
+			function(taxRates) {
+				$scope.taxRates = taxRates;
+				},
+			function(statusCode) {console.log(statusCode);}
+		);
+	
 	
 	$scope.addInvoice = function(invoice,newInvoiceForm) {
 		
@@ -107,6 +167,13 @@ invoices.controller('AddInvoiceController',  function AddInvoiceController($scop
 	};
 	$scope.cancel = function() {window.location = "#/invoiceList";};
 });
+
+
+
+
+
+
+
 
 invoices.controller('LoginController',  function AddInvoiceController($rootScope, $scope, $cookieStore, $location, securityService) {
 	

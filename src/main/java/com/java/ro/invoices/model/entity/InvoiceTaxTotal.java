@@ -25,7 +25,7 @@ public class InvoiceTaxTotal implements Serializable {
 	private TaxRate taxRate;
 	
 	@Column(name = "taxSubtotal", nullable = false, precision = 12, scale = 2)
-	private BigDecimal unitPrice;
+	private BigDecimal taxSubtotal;
 	
 	@Column(name = "tax", nullable = false, precision = 12, scale = 2)
 	private BigDecimal tax;
@@ -51,11 +51,11 @@ public class InvoiceTaxTotal implements Serializable {
 	}
 
 	public BigDecimal getUnitPrice() {
-		return unitPrice;
+		return taxSubtotal;
 	}
 
 	public void setUnitPrice(BigDecimal unitPrice) {
-		this.unitPrice = unitPrice;
+		this.taxSubtotal = unitPrice;
 	}
 
 	public BigDecimal getTax() {

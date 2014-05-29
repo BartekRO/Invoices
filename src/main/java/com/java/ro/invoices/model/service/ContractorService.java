@@ -15,6 +15,6 @@ public class ContractorService {
 	private ContractorRepository repository;
 	
 	public List<Contractor> getContractors() {
-		return repository.findAll();
+		return repository.findAllCacheable();
 	}
 }
