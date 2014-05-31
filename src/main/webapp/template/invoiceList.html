@@ -14,7 +14,10 @@
 				<td data-title="'Maturity date'">{{invoice.maturity | date : 'yyyy-MM-dd'}}</td>
 				<td data-title="'Subtotal amount'">{{invoice.subTotalAmount}}</td>
 				<td data-title="'Total amount'">{{invoice.totalAmount}}</td>
-				<td><button type="button" class="btn btn-default" ng-show="hasRole('ROLE_ADMIN')" ng-click="removeInvoice(invoice.id)">Remove</button></td>
+				<td data-title="'Actions'">
+					<button type="button" class="btn btn-default" ng-show="hasRole('ROLE_ADMIN')" ng-click="removeInvoice(invoice.id)">Remove</button>
+					<button type="button" class="btn btn-default" ng-show="hasRole('ROLE_USER')" ng-click="updateInvoice(invoice)">Update</button>
+				</td>
 			</tr>
 		</table>
 		</div>

@@ -50,12 +50,12 @@ public class InvoiceTaxTotal implements Serializable {
 		this.taxRate = taxRate;
 	}
 
-	public BigDecimal getUnitPrice() {
+	public BigDecimal getTaxSubtotal() {
 		return taxSubtotal;
 	}
 
-	public void setUnitPrice(BigDecimal unitPrice) {
-		this.taxSubtotal = unitPrice;
+	public void setTaxSubtotal(BigDecimal taxSubtotal) {
+		this.taxSubtotal = taxSubtotal;
 	}
 
 	public BigDecimal getTax() {

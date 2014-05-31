@@ -35,7 +35,7 @@ invoices.controller('InvoiceListController',  function InvoiceListController($sc
 			);
 	};
 	
-	
+
 });
 
 
@@ -77,10 +77,10 @@ invoices.controller('AddInvoiceController',  function AddInvoiceController($scop
     	  unitPrice = invoicePosition.unitPrice;
     	  
     	  if (typeof quantity !== 'undefined' &&  typeof unitPrice !== 'undefined') {
-    		  quantity = parseFloat(quantity.replace(",", "."), 10.00);
+    		  quantity = parseFloat(quantity.replace(",", "."), 10.00) * 100;
         	  unitPrice = parseFloat(unitPrice.replace(",", "."), 10.00);
     		  
-    		  invoicePosition.total = unitPrice * quantity, 2;
+    		  invoicePosition.total = Math.round(unitPrice * quantity) /100;
     	  }
     	  $scope.invoiceChanged(invoice);
       };
@@ -155,14 +155,10 @@ invoices.controller('AddInvoiceController',  function AddInvoiceController($scop
 		
 		if (newInvoiceForm.$valid) {
 			
-			alert($scope.dupa);
-			
-//			invoice.totalAmount = parseFloat(invoice.totalAmount.replace(",", "."), 10.00);
-//			
-//			invoicesService.addInvoice(invoice).then(
-//					function(data) {window.location = "#/invoiceList";},
-//					function(statusCode) {console.log(statusCode);}
-//				);
+			invoicesService.addInvoice(invoice).then(
+					function(data) {window.location = "#/invoiceList";},
+					function(statusCode) {console.log(statusCode);}
+				);
 		}
 	};
 	$scope.cancel = function() {window.location = "#/invoiceList";};
