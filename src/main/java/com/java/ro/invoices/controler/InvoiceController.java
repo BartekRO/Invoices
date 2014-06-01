@@ -1,5 +1,7 @@
 package com.java.ro.invoices.controler;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -25,11 +27,17 @@ public class InvoiceController {
 	public @ResponseBody DataTO<Invoice> getInvoices(@RequestParam int page, @RequestParam int count) {
 		return invoiceService.getInvoices(page, count);
 	}
+
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@RequestMapping(value="/getInvoice", method= RequestMethod.GET)
+	public @ResponseBody Invoice getInvoices(@RequestParam long invoiceId) {
+		return invoiceService.getInvoiceById(invoiceId);
+	}
 	
 	@PreAuthorize("hasRole('ROLE_USER')")
-	@RequestMapping(value="/addInvoice", method = RequestMethod.POST)
-	public @ResponseBody String addInvoice(@RequestBody Invoice invoice) {
-		invoiceService.addInvoice(invoice);
+	@RequestMapping(value="/saveInvoice", method = RequestMethod.POST)
+	public @ResponseBody String saveInvoice(@RequestBody Invoice invoice) {
+		invoiceService.saveInvoice(invoice);
 		return "";
 	}
 	

@@ -2,7 +2,7 @@
 <div class="container">
 	
 	<style>input.ng-invalid.ng-dirty {background-color: pink}</style>
-	<form name="newInvoiceForm">
+	<form name="invoiceForm">
 	
 		<fieldset>
 		
@@ -10,10 +10,10 @@
 			<input id="invoiceNumber" type="text" class="form-control" required placeholder="Invoice number" ng-model="invoice.number">
 			
 			<label for="dateOfIssue" >Date of issue:</label>
-			<input id="dateOfIssue" type="text" class="form-control datePicker" required ng-pattern="/\d\d\d\d-\d\d-\d\d/" placeholder="Date of issue (YYYY-MM-DD)" ng-model="invoice.dateOfIssue">
+			<input id="dateOfIssue" type="text" class="form-control datePicker" required ng-pattern="/\d\d\d\d-\d\d-\d\d/" placeholder="Date of issue (YYYY-MM-DD)" ng-model="invoice.dateOfIssue" date-converter>
 			
 			<label for="maturity">Maturity date:</label>
-			<input id="maturity" type="text" class="form-control datePicker" required ng-pattern="/\d\d\d\d-\d\d-\d\d/" placeholder="Maturity date (YYYY-MM-DD)" ng-model="invoice.maturity">
+			<input id="maturity" type="text" class="form-control datePicker" required ng-pattern="/\d\d\d\d-\d\d-\d\d/" placeholder="Maturity date (YYYY-MM-DD)" ng-model="invoice.maturity" date-converter>
 			
 			<label for="contractor">Contractor:</label> 
 			<div class="input-group">
@@ -105,7 +105,7 @@
 	    </div>
 	    
 		
-		<button type="submit" class="btn btn-primary" ng-disabled="newInvoiceForm.$invalid" ng-click="addInvoice(invoice, newInvoiceForm)">Save</button>
+		<button type="submit" class="btn btn-primary" ng-disabled="invoiceForm.$invalid" ng-click="saveInvoice(invoice, invoiceForm)">Save</button>
 		<button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
 	</form>
 

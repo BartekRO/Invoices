@@ -15,11 +15,24 @@
 			
 			return deferred.promise;
 		},
+
+		getInvoice : function(invId) {
+			var deferred = $q.defer();
+
+			$http({method : "GET", url : "rest/getInvoice", params : {invoiceId : invId}
+				}).success(function (data, status, headers, config) {
+					deferred.resolve(data);
+				}).error(function (data, status, headers, config) {
+					deferred.reject(status);
+				});
+			
+			return deferred.promise;
+		},
 		
-		addInvoice : function(invoice) {
+		saveInvoice : function(invoice) {
 			var deferred = $q.defer();
 			
-			$http({method : "POST", url : "rest/addInvoice", data: invoice
+			$http({method : "POST", url : "rest/saveInvoice", data: invoice
 			}).success(function (data, status, headers, config) {
 				deferred.resolve(data);
 			}).error(function (data, status, headers, config) {
@@ -28,7 +41,7 @@
 		
 			return deferred.promise;
 		},
-		
+
 		removeInvoice : function(invoiceId) {
 			var deferred = $q.defer();
 			

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.java.ro.invoices.model.entity.Invoice;
+import com.java.ro.invoices.model.entity.InvoicePosition;
+import com.java.ro.invoices.model.entity.InvoiceTaxTotal;
 import com.java.ro.invoices.model.repository.InvoiceRepository;
 import com.java.ro.invoices.model.to.DataTO;
 
@@ -34,12 +36,23 @@ public class InvoiceService {
 		return result;
 	}
 
-	public Invoice addInvoice(Invoice invoice) {
+	public Invoice saveInvoice(Invoice invoice) {
+		
+		for (InvoicePosition invoicePosition : invoice.getPositions()) {
+			invoicePosition.setInvoice(invoice);
+		}
+ 		for (InvoiceTaxTotal invoiceTaxTotal : invoice.getTaxTotals()) {
+ 			invoiceTaxTotal.setInvoice(invoice);
+ 		}
+		
 		return repository.save(invoice);
 	}
 
 	public void removeInvoice(Long id) {
 		repository.delete(id);
-		
+	}
+
+	public Invoice getInvoiceById(long invoiceId) {
+		return repository.findInvoiceWithPositions(invoiceId);
 	}
 }

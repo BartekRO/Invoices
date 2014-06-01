@@ -6,8 +6,18 @@ var invoices = angular.module('invoices', [ 'ngRoute', 'ngCookies', 'ngTable', '
 				controller : 'InvoiceListController'
 			});
 			$routeProvider.when('/addInvoice', {
-				templateUrl : 'template/addInvoice.html',
-				controller : 'AddInvoiceController'
+				templateUrl : 'template/modifyInvoice.html',
+				controller : 'InvoiceController'
+			});
+			$routeProvider.when('/invoice/:invoiceId', {
+				templateUrl : 'template/modifyInvoice.html',
+				controller : 'InvoiceController',
+				resolve : {
+					invoice : function($route, invoicesService) {
+						return invoicesService.getInvoice($route.current.pathParams.invoiceId);
+					}
+				}
+			
 			});
 			$routeProvider.when('/login', {
 				templateUrl : 'template/login.html',

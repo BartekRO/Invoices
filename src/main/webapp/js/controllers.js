@@ -3,7 +3,7 @@
 /* Controllers */
 
 invoices.controller('InvoiceListController',  function InvoiceListController($scope, invoicesService, $route, ngTableParams) {
-	
+
 	$scope.tableParams = new ngTableParams({
         page: 1,            // show first page
         count: 10,          // count per page
@@ -35,19 +35,30 @@ invoices.controller('InvoiceListController',  function InvoiceListController($sc
 			);
 	};
 	
-
+	$scope.updateInvoice = function(invoiceId) {
+		window.location = "#/invoice/" + invoiceId;	
+	}
+ 
 });
 
 
 
 
-
-invoices.controller('AddInvoiceController',  function AddInvoiceController($scope, $filter, invoicesService, contractorsService, taxRatesService, ngTableParams) {
+invoices.controller('InvoiceController', function InvoiceController($scope, $route, invoicesService,
+ contractorsService, taxRatesService, ngTableParams){
 	
-	 $scope.lovTitle = "Search for Employees";
-     $scope.lovColumnList = ["Name"];
-     $scope.lovFieldList = ["name"];
+	$scope.invoice = $route.current.locals.invoice;
+
+	if (typeof $scope.invoice === 'undefined') {
+			$scope.invoice = {};
+			$scope.invoice.positions = [{}];
+	}
      
+
+	$scope.lovTitle = "Search for Employees";
+    $scope.lovColumnList = ["Name"];
+    $scope.lovFieldList = ["name"];
+    
      $scope.tableParams = new ngTableParams({
          page: 1, 
          count: 1000  
@@ -58,9 +69,55 @@ invoices.controller('AddInvoiceController',  function AddInvoiceController($scop
         	 $defer.resolve($scope.invoice.positions);
          }
      }); 
-     
-     $scope.addInvoicePosition = function() {
-    	 $scope.invoice.positions.push({});
+
+      $scope.lovCallBack = function (e) {
+		if (typeof $scope.invoice === 'undefined') {
+			$scope.invoice = {};
+		}
+        $scope.invoice.contractor = e;
+        $scope.invoiceForm.contractor.$setValidity('editable', true);
+     };
+	
+	contractorsService.getContractors().then(
+		function(contractors) {
+			$scope.contractors = contractors;
+			},
+		function(statusCode) {console.log(statusCode);}
+	);
+	
+	taxRatesService.getTaxRates().then(
+			function(taxRates) {
+				$scope.taxRates = taxRates;
+				},
+			function(statusCode) {console.log(statusCode);}
+		);
+	
+	
+	$scope.saveInvoice = function(invoice,invoiceForm) {
+		
+		if (invoiceForm.$valid) {
+			
+      var invoicePositionLength = invoice.positions.length;
+      for (var i = 0; i < invoicePositionLength; i++) {
+        if (typeof invoice.positions[i].quantity === 'string') {
+          invoice.positions[i].quantity = invoice.positions[i].quantity.replace(",", ".");
+        }
+        if (typeof invoice.positions[i].unitPrice === 'string') {
+          invoice.positions[i].unitPrice = invoice.positions[i].unitPrice.replace(",", ".");
+        }
+      };
+
+
+			invoicesService.saveInvoice(invoice).then(
+					function(data) {window.location = "#/invoiceList";},
+					function(statusCode) {console.log(statusCode);}
+				);
+		}
+	};
+	$scope.cancel = function() {window.location = "#/invoiceList";};
+	
+	$scope.addInvoicePosition = function() {
+       $scope.invoice.positions.push({});
      };
      
      $scope.deleteInvoicePosition = function(invoice, position) {
@@ -77,9 +134,13 @@ invoices.controller('AddInvoiceController',  function AddInvoiceController($scop
     	  unitPrice = invoicePosition.unitPrice;
     	  
     	  if (typeof quantity !== 'undefined' &&  typeof unitPrice !== 'undefined') {
-    		  quantity = parseFloat(quantity.replace(",", "."), 10.00) * 100;
-        	  unitPrice = parseFloat(unitPrice.replace(",", "."), 10.00);
-    		  
+          if (typeof quantity === 'string') {
+            quantity = parseFloat(quantity.replace(",", "."), 10.00) * 100;
+          } 
+    		  if (typeof unitPrice === 'string') {
+             unitPrice = parseFloat(unitPrice.replace(",", "."), 10.00);
+          } 
+        	 
     		  invoicePosition.total = Math.round(unitPrice * quantity) /100;
     	  }
     	  $scope.invoiceChanged(invoice);
@@ -121,52 +182,7 @@ invoices.controller('AddInvoiceController',  function AddInvoiceController($scop
     		  invoice.taxTotals.push(invoiceTaxTotal);
     	  } 
       };
-      
-	
-     if (typeof $scope.invoice === 'undefined') {
-			$scope.invoice = {};
-			$scope.invoice.positions = [{}];
-	}
-     
-     $scope.lovCallBack = function (e) {
-		if (typeof $scope.invoice === 'undefined') {
-			$scope.invoice = {};
-		}
-        $scope.invoice.contractor = e;
-        $scope.newInvoiceForm.contractor.$setValidity('editable', true);
-     };
-	
-	contractorsService.getContractors().then(
-		function(contractors) {
-			$scope.contractors = contractors;
-			},
-		function(statusCode) {console.log(statusCode);}
-	);
-	
-	taxRatesService.getTaxRates().then(
-			function(taxRates) {
-				$scope.taxRates = taxRates;
-				},
-			function(statusCode) {console.log(statusCode);}
-		);
-	
-	
-	$scope.addInvoice = function(invoice,newInvoiceForm) {
-		
-		if (newInvoiceForm.$valid) {
-			
-			invoicesService.addInvoice(invoice).then(
-					function(data) {window.location = "#/invoiceList";},
-					function(statusCode) {console.log(statusCode);}
-				);
-		}
-	};
-	$scope.cancel = function() {window.location = "#/invoiceList";};
 });
-
-
-
-
 
 
 

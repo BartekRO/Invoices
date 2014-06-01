@@ -13,14 +13,14 @@ INSERT INTO "Invoices".contractor(id, addresscityzip, addressstreet, name) VALUE
 INSERT INTO "Invoices".invoice( id, dateofissue, maturity, "number", subtotalamount, totalamount, id_contractor)
     VALUES (1,  '1994-11-29', '1994-11-29', 'FV-2001-1', 1099.98, 1256.98,  5);
 
-INSERT INTO "Invoices".invoiceposition( id, description, quantity, total, unitprice, id_invoce, id_taxrate)
+INSERT INTO "Invoices".invoiceposition( id, description, quantity, total, unitprice, id_invoice, id_taxrate)
 VALUES (1, 'Some random position 1', 2, 599.98, 249.99, 1, 2);
 
-INSERT INTO "Invoices".invoiceposition( id, description, quantity, total, unitprice, id_invoce, id_taxrate)
+INSERT INTO "Invoices".invoiceposition( id, description, quantity, total, unitprice, id_invoice, id_taxrate)
 VALUES (2, 'Some random position 2', 5, 500, 100, 1, 3);
 
-INSERT INTO "Invoices".invoicetaxtotal(id, tax, taxsubtotal, id_invoce, id_taxrate) VALUES (1, 42, 599.98, 1, 2);
-INSERT INTO "Invoices".invoicetaxtotal(id, tax, taxsubtotal, id_invoce, id_taxrate) VALUES (2, 115, 500, 1, 3);
+INSERT INTO "Invoices".invoicetaxtotal(id, tax, taxsubtotal, id_invoice, id_taxrate) VALUES (1, 42, 599.98, 1, 2);
+INSERT INTO "Invoices".invoicetaxtotal(id, tax, taxsubtotal, id_invoice, id_taxrate) VALUES (2, 115, 500, 1, 3);
 
 
 

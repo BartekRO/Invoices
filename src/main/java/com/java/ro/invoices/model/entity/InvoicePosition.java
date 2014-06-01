@@ -33,11 +33,11 @@ public class InvoicePosition implements Serializable {
 	private BigDecimal total;
 
 	@ManyToOne
-	@JoinColumn(name = "id_taxRate")
+	@JoinColumn(name = "id_taxRate", nullable = false)
 	private TaxRate taxRate;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_invoce")
+	@JoinColumn(name = "id_invoice", nullable = false)
 	private Invoice invoice;
 
 	public Long getId() {

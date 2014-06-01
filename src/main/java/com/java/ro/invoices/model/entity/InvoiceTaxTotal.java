@@ -21,7 +21,7 @@ public class InvoiceTaxTotal implements Serializable {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_taxRate")
+	@JoinColumn(name = "id_taxRate", nullable = false)
 	private TaxRate taxRate;
 	
 	@Column(name = "taxSubtotal", nullable = false, precision = 12, scale = 2)
@@ -31,7 +31,7 @@ public class InvoiceTaxTotal implements Serializable {
 	private BigDecimal tax;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_invoce")
+	@JoinColumn(name = "id_invoice", nullable = false)
 	private Invoice invoice;
 
 	public Long getId() {

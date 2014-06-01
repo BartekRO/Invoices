@@ -1,7 +1,6 @@
 'use strict';
 
-invoices
-.directive('loadingContainer', function () {
+invoices.directive('loadingContainer', function () {
     return {
         restrict: 'A',
         scope: false,
@@ -15,3 +14,22 @@ invoices
         }
     };
 }); 
+
+invoices.directive('dateConverter', function($filter){
+    return {
+        require: 'ngModel',
+        restrict: 'A',
+        link: function(scope, element, attrs, ngModelController) {
+            ngModelController.$parsers.push(function(data) {
+              //convert data from view format to model format
+              var date = Date.parse(data);
+              return isNaN(date) ? '' : date;
+            });
+
+            ngModelController.$formatters.push(function(data) {
+              //convert data from model format to view format
+              return $filter('date')(data, 'yyyy-MM-dd'); //converted
+            });
+        }
+    };
+});

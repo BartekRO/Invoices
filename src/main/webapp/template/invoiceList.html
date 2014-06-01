@@ -16,7 +16,7 @@
 				<td data-title="'Total amount'">{{invoice.totalAmount}}</td>
 				<td data-title="'Actions'">
 					<button type="button" class="btn btn-default" ng-show="hasRole('ROLE_ADMIN')" ng-click="removeInvoice(invoice.id)">Remove</button>
-					<button type="button" class="btn btn-default" ng-show="hasRole('ROLE_USER')" ng-click="updateInvoice(invoice)">Update</button>
+					<button type="button" class="btn btn-default" ng-show="hasRole('ROLE_USER')" ng-click="updateInvoice(invoice.id)">Update</button>
 				</td>
 			</tr>
 		</table>

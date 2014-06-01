@@ -1,0 +1,517 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"invoicePOsi",
+				"invoicePositionChanged"
+			],
+			[
+				"di",
+				"directive"
+			],
+			[
+				"invoice",
+				"invoiceId"
+			],
+			[
+				"de",
+				"defer"
+			],
+			[
+				"invoi",
+				"invoice"
+			],
+			[
+				"$sc",
+				"$scope	AngularJS"
+			],
+			[
+				"invoiceS",
+				"invoicesService"
+			],
+			[
+				"in",
+				"invoiceId"
+			],
+			[
+				"$htt",
+				"$httpProvider"
+			],
+			[
+				"res",
+				"resolve"
+			],
+			[
+				"get",
+				"getInvoices"
+			],
+			[
+				"invo",
+				"invoicesService"
+			],
+			[
+				"$http",
+				"verbose_$http	AngularJS"
+			],
+			[
+				"mo",
+				"module	AngularJS"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/E/development/tools/Sublime Text 2.0.2 x64/Data/Packages/AngularJS/AngularJS-sublime-package.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 3690,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/main/webapp/js/app.js",
+			"settings":
+			{
+				"buffer_size": 3373,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/main/webapp/js/controllers.js",
+			"settings":
+			{
+				"buffer_size": 10060,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/main/webapp/index.html",
+			"settings":
+			{
+				"buffer_size": 2313,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/main/webapp/js/services.js",
+			"settings":
+			{
+				"buffer_size": 3645,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/main/webapp/template/addInvoice.html",
+			"settings":
+			{
+				"buffer_size": 4958,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/main/webapp/template/modifyInvoice.html",
+			"settings":
+			{
+				"buffer_size": 4980,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/main/webapp/template/invoiceList.html",
+			"settings":
+			{
+				"buffer_size": 1103,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/main/webapp/js/directives.js",
+			"settings":
+			{
+				"buffer_size": 1160,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 311.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			]
+		],
+		"width": 472.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"     \n",
+			"eturn Date.parse(data); //converted",
+			"compile",
+			"f"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/E/development/tools/Sublime Text 2.0.2 x64/Data/Packages/AngularJS/AngularJS-sublime-package.sublime-settings",
+					"settings":
+					{
+						"buffer_size": 3690,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								177,
+								177
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/main/webapp/js/app.js",
+					"settings":
+					{
+						"buffer_size": 3373,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								439,
+								439
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/main/webapp/js/controllers.js",
+					"settings":
+					{
+						"buffer_size": 10060,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1540,
+								1540
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 617.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/main/webapp/index.html",
+					"settings":
+					{
+						"buffer_size": 2313,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/AngularJS/AngularJS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/main/webapp/js/services.js",
+					"settings":
+					{
+						"buffer_size": 3645,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1444,
+								1444
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 199.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/main/webapp/template/addInvoice.html",
+					"settings":
+					{
+						"buffer_size": 4958,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								4958
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/AngularJS/AngularJS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/main/webapp/template/modifyInvoice.html",
+					"settings":
+					{
+						"buffer_size": 4980,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4581,
+								4581
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/AngularJS/AngularJS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1159.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/main/webapp/template/invoiceList.html",
+					"settings":
+					{
+						"buffer_size": 1103,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								681,
+								681
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/AngularJS/AngularJS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "src/main/webapp/js/directives.js",
+					"settings":
+					{
+						"buffer_size": 1160,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								580,
+								580
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 25.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.unsaved_changes":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 189.0,
+	"status_bar_visible": true
+}
