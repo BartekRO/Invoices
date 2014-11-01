@@ -29,7 +29,7 @@ import com.java.ro.invoices.model.entity.InvoiceTaxTotal;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:root-context.xml"})
 @Transactional
-@TransactionConfiguration(defaultRollback=false)
+@TransactionConfiguration(defaultRollback=true)
 public class InvoiceServiceTest  extends AbstractTransactionalJUnit4SpringContextTests {
 	
 	@Autowired
