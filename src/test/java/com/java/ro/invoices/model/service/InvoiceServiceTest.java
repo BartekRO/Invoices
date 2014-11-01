@@ -60,6 +60,6 @@ public class InvoiceServiceTest  extends AbstractTransactionalJUnit4SpringContex
 	
 	@Test
 	public void anotherTest() {
-		Assert.assertTrue(true);
+		Assert.assertTrue(false);
 	}
 }
