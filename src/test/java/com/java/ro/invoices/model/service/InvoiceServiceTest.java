@@ -57,4 +57,9 @@ public class InvoiceServiceTest  extends AbstractTransactionalJUnit4SpringContex
 		entityManager.flush();
 		Assert.assertEquals(1, countRowsInTableWhere("Invoice", "  number = '123456'"));
 	}
+	
+	@Test
+	public void anotherTest() {
+		Assert.assertTrue(true);
+	}
 }
