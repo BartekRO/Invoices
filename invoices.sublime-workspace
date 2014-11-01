@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"for",
+				"for	for (…) {…} (Improved Native For-Loop)"
+			],
+			[
 				"invoicePOsi",
 				"invoicePositionChanged"
 			],
@@ -83,7 +87,7 @@
 			"file": "src/main/webapp/js/controllers.js",
 			"settings":
 			{
-				"buffer_size": 10060,
+				"buffer_size": 6480,
 				"line_ending": "Windows"
 			}
 		},
@@ -99,7 +103,7 @@
 			"file": "src/main/webapp/js/services.js",
 			"settings":
 			{
-				"buffer_size": 3645,
+				"buffer_size": 3296,
 				"line_ending": "Windows"
 			}
 		},
@@ -107,7 +111,7 @@
 			"file": "src/main/webapp/template/addInvoice.html",
 			"settings":
 			{
-				"buffer_size": 4958,
+				"buffer_size": 0,
 				"line_ending": "Windows"
 			}
 		},
@@ -164,6 +168,8 @@
 	},
 	"file_history":
 	[
+		"/E/development/tools/Sublime Text 2.0.2 x64/Data/Packages/Default/Preferences.sublime-settings",
+		"/E/development/tools/Sublime Text 2.0.2 x64/Data/Packages/User/Preferences.sublime-settings"
 	],
 	"find":
 	{
@@ -171,7 +177,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 90.0,
+		"height": 0.0,
 		"where_history":
 		[
 		]
@@ -181,6 +187,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"scroll",
+			"newInvoiceForm",
+			"  \n",
+			"        	 \n",
 			"     \n",
 			"eturn Date.parse(data); //converted",
 			"compile",
@@ -202,7 +212,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -244,8 +254,8 @@
 						"selection":
 						[
 							[
-								439,
-								439
+								956,
+								968
 							]
 						],
 						"settings":
@@ -254,7 +264,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 75.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -264,24 +274,25 @@
 					"file": "src/main/webapp/js/controllers.js",
 					"settings":
 					{
-						"buffer_size": 10060,
+						"buffer_size": 6480,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1540,
-								1540
+								315,
+								315
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 617.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -318,15 +329,15 @@
 					"file": "src/main/webapp/js/services.js",
 					"settings":
 					{
-						"buffer_size": 3645,
+						"buffer_size": 3296,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1444,
-								1444
+								852,
+								852
 							]
 						],
 						"settings":
@@ -335,7 +346,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 199.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -345,7 +356,7 @@
 					"file": "src/main/webapp/template/addInvoice.html",
 					"settings":
 					{
-						"buffer_size": 4958,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
@@ -353,7 +364,7 @@
 						[
 							[
 								0,
-								4958
+								0
 							]
 						],
 						"settings":
